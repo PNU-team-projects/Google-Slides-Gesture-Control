@@ -5,13 +5,13 @@ from cvzone.HandTrackingModule import HandDetector
 from tensorflow.keras import models
 
 
-labels = ["A", "B", "C", "F", "G", "L", "P", "Q", "R", "Y"]
+labels = ["A", "B", "C", "F", "G", "L", "P", "Q", "R"]
 offset = 30
 img_size = 300
 
 
 # Loading the model from files
-json_file = open('saved_models/model (1).json', 'r')
+json_file = open('saved_models/model_3.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = models.model_from_json(loaded_model_json)
@@ -19,7 +19,7 @@ loaded_model = models.model_from_json(loaded_model_json)
 loaded_model.built = True
 
 loaded_model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-loaded_model.load_weights("saved_models/model_weights (1).h5")
+loaded_model.load_weights("saved_models/model_weights_3.h5")
 # Model is loaded 
 
 cap = cv2.VideoCapture(0)
@@ -62,6 +62,7 @@ while True:
                 print("error 2")
 
         try:
+            finalImage = cv2.cvtColor(finalImage, cv2.COLOR_BGR2GRAY)
             prediction = loaded_model.predict(np.array([finalImage/255]))
             label = np.argmax(prediction[0])
             print(labels[label])
