@@ -44,15 +44,22 @@ while True:
             wCal = math.floor(k*w)
             wGap = math.floor((img_size-wCal)/2)
 
-            img_resized = cv2.resize(imgCrop, (wCal, img_size))
-            finalImage[:, wGap : wCal+wGap] = img_resized
+            try:
+                img_resized = cv2.resize(imgCrop, (wCal, img_size))
+                finalImage[:, wGap: wCal+wGap] = img_resized
+            except:
+                print("error 2")
+
         else:
             k = img_size/w
             hCal = math.floor(k*h)
             hGap = math.floor((img_size-hCal)/2)
 
-            img_resized = cv2.resize(imgCrop, (img_size, hCal))
-            finalImage[hGap : hCal+hGap, :] = img_resized
+            try:
+                img_resized = cv2.resize(imgCrop, (img_size, hCal))
+                finalImage[hGap: hCal+hGap, :] = img_resized
+            except:
+                print("error 2")
 
         try:
             prediction = loaded_model.predict(np.array([finalImage/255]))
