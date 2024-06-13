@@ -11,7 +11,7 @@ img_size = 300
 
 
 # Loading the model from files
-json_file = open('saved_models/model_3.json', 'r')
+json_file = open('../saved_models/model_3.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = models.model_from_json(loaded_model_json)
@@ -19,7 +19,7 @@ loaded_model = models.model_from_json(loaded_model_json)
 loaded_model.built = True
 
 loaded_model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"])
-loaded_model.load_weights("saved_models/model_weights_3.h5")
+loaded_model.load_weights("../saved_models/model_weights_3.h5")
 # Model is loaded 
 
 cap = cv2.VideoCapture(0)

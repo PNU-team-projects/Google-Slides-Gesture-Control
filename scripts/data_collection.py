@@ -61,7 +61,7 @@ while True:
 
     if key == ord("s"):
         counter +=1
-        cv2.imwrite(f'data/{SIGN}/{SIGN}_{counter}.jpg', finalImage)
+        cv2.imwrite(f'../data/{SIGN}/{SIGN}_{counter}.jpg', finalImage)
         print(counter)
     elif key == 27: #ESC
         break
